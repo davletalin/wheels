@@ -1,0 +1,78 @@
+package kz.epam.davletalin.database.dao;
+
+import kz.epam.davletalin.database.ConnectionPool;
+import kz.epam.davletalin.entity.User;
+import kz.epam.davletalin.entity.Vechicle;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class VechicleDao implements Dao<Vechicle> {
+    private final ConnectionPool CONNECTION_POOL = ConnectionPool.getUniqueInstance();
+
+    @Override
+    public Vechicle getById(long id) throws SQLException {
+        Connection connection = CONNECTION_POOL.retrieve();
+        final String sql = "SELECT * FROM make WHERE make_id= ?";
+        Vechicle vechicle = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                vechicle = new Vechicle();
+                vechicle = initialize(vechicle, resultSet);
+            }
+        } finally {
+            CONNECTION_POOL.putBack(connection);
+        }
+        return vechicle;
+    }
+
+    @Override
+    public List<Vechicle> getAll() throws SQLException {
+        final String sql = "SELECT * FROM make";
+        List<Vechicle> vechiclesList = new ArrayList<>();
+        Connection connection = CONNECTION_POOL.retrieve();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                Vechicle vechicle = new Vechicle();
+                vechicle = initialize(vechicle, resultSet);
+                vechiclesList.add(vechicle);
+            }
+        } finally {
+            CONNECTION_POOL.putBack(connection);
+        }
+        return vechiclesList;
+    }
+
+    @Override
+    public void save(Vechicle vechicle) {
+
+    }
+
+    @Override
+    public void update(Vechicle vechicle, String[] params) {
+
+    }
+
+    @Override
+    public void delete(Vechicle vechicle) {
+
+    }
+
+    @Override
+    public Vechicle initialize(Vechicle vechicle, ResultSet resultSet) {
+        try {
+            vechicle.setId(resultSet.getLong("make_id"));
+            vechicle.setMake(resultSet.getString("make_name"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vechicle;
+    }
+}
