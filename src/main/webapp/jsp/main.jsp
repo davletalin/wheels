@@ -5,7 +5,7 @@
 <br>
 <head>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico" type="image/x-icon">
-    <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
     <title>Title</title>
 </head>
 <body>
@@ -24,6 +24,15 @@
         <p><label><input type="text" name="id">Vechicle Id</label></p>
         <input type="submit" value="Показать"/>
     </form>
+    <form method="get" action="${pageContext.request.contextPath}/vechicle">
+        <select name="make" ONKEYUP="function getMakeList(){
+                var make=${'make'}.
+                }">
+
+        </select>
+
+    </form>
+    <input type="tel" name="tel" placeholder="Phone number">
 </div>
 </body>
 </html>

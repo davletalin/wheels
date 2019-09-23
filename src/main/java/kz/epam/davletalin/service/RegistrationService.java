@@ -1,19 +1,47 @@
 package kz.epam.davletalin.service;
 
+import kz.epam.davletalin.database.dao.UserDao;
+import kz.epam.davletalin.entity.Role;
+import kz.epam.davletalin.entity.User;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
-public class RegistrationService  implements Service{
+public class RegistrationService implements Service {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
-        doPost(req,res);
+        ServletContext servletContext = req.getServletContext();
+        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/registration.jsp");
+        dispatcher.forward(req, res);
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+        String newLogin = req.getParameter("login");
+        System.out.println("newLogin= " + newLogin);
+        if (new UserDao().getByLogin(newLogin).getLogin() == null) {
+            System.out.println("user login == null");
+            User user = new User();
+            user.setLogin(newLogin);
+            user.setPassword(req.getParameter("password"));
+            user.setFirstName(req.getParameter("first_name"));
+            user.setLastName(req.getParameter("last_name"));
+            user.setEmail(req.getParameter("email"));
+            user.setRole(Role.USER);
+            user.setRegDate(new Timestamp(new Date().getTime()));
+            new UserDao().save(user);
+            System.out.println("user to add" + user);
+            req.getRequestDispatcher("/jsp/main.jsp").forward(req, res);
 
+        } else
+            System.out.println("user login!= null");
+        doGet(req, res);
     }
 }

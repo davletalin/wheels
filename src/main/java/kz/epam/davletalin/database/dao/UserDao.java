@@ -25,9 +25,7 @@ public class UserDao implements Dao<User> {
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("inside resultSet start");
-                user = initialize(user,resultSet);
-                System.out.println("Inside resultSet finish User by login= "+user);
+                user = initialize(user, resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +42,22 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void save(User user) {
-
+        final String sql = "INSERT INTO user (login, password, first_name, last_name, email, role_id, reg_date) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        Connection connection = CONNECTION_POOL.retrieve();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1,user.getLogin());
+            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.setString(3,user.getFirstName());
+            preparedStatement.setString(4,user.getLastName());
+            preparedStatement.setString(5,user.getEmail());
+            preparedStatement.setInt(6,2);//TODO fix Role input
+            preparedStatement.setString(7,user.getRegDate().toString());//TODO fix date input
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            CONNECTION_POOL.putBack(connection);
+        }
     }
 
     @Override
@@ -54,6 +67,16 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void delete(User user) {
+        final String sql = "DELETE * FROM user WHERE Login = ?";
+        Connection connection = CONNECTION_POOL.retrieve();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CONNECTION_POOL.putBack(connection);
+        }
 
     }
 
@@ -62,9 +85,10 @@ public class UserDao implements Dao<User> {
         user.setId(resultSet.getLong("user_id"));
         user.setLogin(resultSet.getString("login"));
         user.setPassword(resultSet.getString("password"));
-        user.setFirst_name(resultSet.getString("first_name"));
-        user.setLast_name(resultSet.getString("last_name"));
-        user.setReg_date(resultSet.getTimestamp("reg_date"));
+        user.setFirstName(resultSet.getString("first_name"));
+        user.setLastName(resultSet.getString("last_name"));
+        user.setEmail(resultSet.getString("email"));
+        user.setRegDate(resultSet.getTimestamp("reg_date"));
         return user;
     }
 }

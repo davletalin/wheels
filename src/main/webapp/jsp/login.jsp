@@ -9,9 +9,10 @@
 <body>
 
 <form method="post" action="${pageContext.request.contextPath}/login">
-    <p><label><input type="text" name="login" >Логин</label></p>
-    <p><label><input type="text" name="password" >Пароль</label></p>
+    <p><label><input type="text" name="login" placeholder="login">Логин</label></p>
+    <p><label><input type="text" name="password" placeholder="password">Пароль</label></p>
     <input type="submit" value="Войти"/>
+
 </form>
 ${user}
 </body>
