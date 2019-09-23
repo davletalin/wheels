@@ -6,13 +6,9 @@
     <title>Vechicles List</title>
 </head>
 <body>
-<c:out value="${param.id}"/>
+<c:out value="${param.vechicle}"/>
 <c:forEach var="vechicle" items="${vechiclesList}">
     <p>${vechicle.make}</p>
 </c:forEach>
-<c:forEach var="paramm" items="${paramValues}">
-    <p>${paramm}</p>
-</c:forEach>
-
 </body>
 </html>

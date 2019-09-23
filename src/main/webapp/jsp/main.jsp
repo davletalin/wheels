@@ -32,7 +32,6 @@
         </select>
 
     </form>
-    <input type="tel" name="tel" placeholder="Phone number">
-</div>
+    <p><a href="${pageContext.request.contextPath}/delete">Удалить пользователя</a></p></div>
 </body>
 </html>

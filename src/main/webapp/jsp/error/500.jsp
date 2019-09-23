@@ -1,17 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Armat
-  Date: 21-Sep-19
-  Time: 8:45 PM
+  Date: 23-Sep-19
+  Time: 11:04 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Page not found</title>
+    <title>Title</title>
 </head>
 <body>
 
-<h1>Sorry, the page you requested was not found.</h1>
 </body>
 </html>

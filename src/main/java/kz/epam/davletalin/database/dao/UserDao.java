@@ -67,7 +67,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void delete(User user) {
-        final String sql = "DELETE * FROM user WHERE Login = ?";
+        final String sql = "DELETE FROM user WHERE login = ?";
         Connection connection = CONNECTION_POOL.retrieve();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getLogin());
