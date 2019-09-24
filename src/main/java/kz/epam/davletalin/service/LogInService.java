@@ -32,7 +32,7 @@ public class LogInService implements Service {
             System.out.println("login password matches");
             User user = new UserDao().getByLogin(login);
             session.setAttribute("user", user);
-            res.sendRedirect(req.getContextPath()+"/jsp/try.jsp");
+            res.sendRedirect(req.getContextPath());
         } else {
             System.out.println("login password incorrect");
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/login.jsp");

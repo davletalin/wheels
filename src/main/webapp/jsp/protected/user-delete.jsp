@@ -7,7 +7,7 @@
 </head>
 <body>
 <form method="post" action="${pageContext.request.contextPath}/delete">
-    <input type="text" name="user" placeholder="username" >
+    <input type="text" name="login" placeholder="username" >
     <input type="submit" value="Delete">
 </form>
 

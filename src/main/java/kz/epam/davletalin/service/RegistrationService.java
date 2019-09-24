@@ -43,7 +43,7 @@ public class RegistrationService implements Service {
             req.getRequestDispatcher("/jsp/main.jsp").forward(req, res);
 
         } else
-            System.out.println("user login!= null");
+            req.setAttribute("error",601);
         doGet(req, res);
     }
 }
