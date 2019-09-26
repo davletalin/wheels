@@ -6,8 +6,13 @@
     <title>Title</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <p><a href="${pageContext.request.contextPath}/logout" >Выйти</a></p>
 Successfully logged in
 ${sessionScope.user}
+</br>
+<fmt:setBundle basename="locale"  var="lang" />
+    <fmt:message key="q" bundle="${lang}" />
+
 </body>
 </html>

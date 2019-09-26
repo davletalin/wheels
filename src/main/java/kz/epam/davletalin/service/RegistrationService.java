@@ -38,12 +38,14 @@ public class RegistrationService implements Service {
             user.setRole(Role.USER);
             user.setRegDate(new Timestamp(new Date().getTime()));
             new UserDao().save(user);
-            HttpSession session=req.getSession();
-            session.setAttribute("user",user);
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+            req.removeAttribute("error");
             req.getRequestDispatcher("/jsp/main.jsp").forward(req, res);
 
-        } else
-            req.setAttribute("error",601);
-        doGet(req, res);
+        } else {
+            req.setAttribute("error", 601);
+            doGet(req, res);
+        }
     }
 }

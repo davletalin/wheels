@@ -62,7 +62,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User user, String[] params) {
-
+        final String sql = "UPDATE user SET password = ?, first_name = ?, last_name = ?, email = ?, role_id = ?";
     }
 
     @Override

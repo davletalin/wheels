@@ -6,9 +6,12 @@
     <title>Vechicles List</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
+<div class="vechicles-list">
 <c:out value="${param.vechicle}"/>
 <c:forEach var="vechicle" items="${vechiclesList}">
     <p>${vechicle.make}</p>
 </c:forEach>
+</div>
 </body>
 </html>
