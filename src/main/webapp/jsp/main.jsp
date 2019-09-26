@@ -9,11 +9,6 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
     <title>Wheels</title>
-    <style>
-        body{
-            background: gold;
-        }
-    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>

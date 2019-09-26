@@ -18,9 +18,9 @@ import java.util.Date;
 public class RegistrationService implements Service {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
-        ServletContext servletContext = req.getServletContext();
-        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/registration.jsp");
-        dispatcher.forward(req, res);
+//        ServletContext servletContext = req.getServletContext();
+//        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/registration.jsp");
+//        dispatcher.forward(req, res);
     }
 
     @Override
