@@ -6,6 +6,11 @@ public class Vechicle {
     private String model;
     private String color;
     private String body;
+    private String engine;
+    private String transmission;
+    private String wheelDrive;
+
+
 
     public Vechicle() {
     }
@@ -48,6 +53,30 @@ public class Vechicle {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getEngine() {
+        return engine;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
+    }
+
+    public String getWheelDrive() {
+        return wheelDrive;
+    }
+
+    public void setWheelDrive(String wheelDrive) {
+        this.wheelDrive = wheelDrive;
     }
 
     @Override

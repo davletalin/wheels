@@ -9,6 +9,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private long phone;
     private Role role;
     private Timestamp regDate;
 
@@ -70,6 +71,14 @@ public class User {
         this.email = email;
     }
 
+    public long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -95,6 +104,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
                 ", role=" + role +
                 ", regDate=" + regDate +
                 '}';

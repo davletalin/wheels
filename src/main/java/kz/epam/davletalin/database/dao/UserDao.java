@@ -42,27 +42,28 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void save(User user) {
-        final String sql = "INSERT INTO user (login, password, first_name, last_name, email, role_id, reg_date) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        final String sql = "INSERT INTO user (login, password, first_name, last_name, email, phone, role_id, reg_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         Connection connection = CONNECTION_POOL.retrieve();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setString(1,user.getLogin());
-            preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setString(3,user.getFirstName());
-            preparedStatement.setString(4,user.getLastName());
-            preparedStatement.setString(5,user.getEmail());
-            preparedStatement.setInt(6,2);//TODO fix Role input
-            preparedStatement.setString(7,user.getRegDate().toString());//TODO fix date input
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setLong(6, user.getPhone());
+            preparedStatement.setInt(7, 2);//TODO fix Role input
+            preparedStatement.setString(8, user.getRegDate().toString());//TODO fix date input
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             CONNECTION_POOL.putBack(connection);
         }
     }
 
     @Override
     public void update(User user, String[] params) {
-        final String sql = "UPDATE user SET password = ?, first_name = ?, last_name = ?, email = ?, role_id = ?";
+        final String sql = "UPDATE user SET password = ?, first_name = ?, last_name = ?, email = ?, phone = ?, role_id = ?";
     }
 
     @Override
@@ -88,6 +89,7 @@ public class UserDao implements Dao<User> {
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));
         user.setEmail(resultSet.getString("email"));
+        user.setPhone(resultSet.getLong("phone"));
         user.setRegDate(resultSet.getTimestamp("reg_date"));
         return user;
     }

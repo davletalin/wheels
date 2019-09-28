@@ -1,12 +1,15 @@
 package kz.epam.davletalin.entity;
 
+import java.io.File;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Ad {
     private long id;
     private User user;
     private Timestamp publication_date;
     private Vechicle vechicle;
+    private List<File> photos;
 
     public Ad() {
     }
@@ -41,5 +44,13 @@ public class Ad {
 
     public void setVechicle(Vechicle vechicle) {
         this.vechicle = vechicle;
+    }
+
+    public List<File> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<File> photos) {
+        this.photos = photos;
     }
 }
