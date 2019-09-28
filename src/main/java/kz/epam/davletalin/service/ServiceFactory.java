@@ -18,6 +18,7 @@ public class ServiceFactory {
         SERVICE_MAP.put("/registration", new RegistrationService());
         SERVICE_MAP.put("/delete", new UserDeleteService());
         SERVICE_MAP.put("/profile", new UserUpdateService());
+        SERVICE_MAP.put("/switch", new LanguageSwitchService());
     }
 
     public static ServiceFactory getInstance() {

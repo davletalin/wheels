@@ -8,6 +8,18 @@
         <param-name>sessionLocale</param-name>
         <param-value>ru</param-value>
     </context-param>
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>kz.epam.davletalin.filter.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>requestEncoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>kz.epam.davletalin.controller.Controller</servlet-class>
