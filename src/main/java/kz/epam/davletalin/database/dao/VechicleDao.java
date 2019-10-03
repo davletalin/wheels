@@ -1,7 +1,6 @@
 package kz.epam.davletalin.database.dao;
 
 import kz.epam.davletalin.database.ConnectionPool;
-import kz.epam.davletalin.entity.User;
 import kz.epam.davletalin.entity.Vechicle;
 
 import java.sql.Connection;
@@ -34,7 +33,7 @@ public class VechicleDao implements Dao<Vechicle> {
 
     @Override
     public List<Vechicle> getAll() throws SQLException {
-        final String sql = "SELECT * FROM make";
+        final String sql = "SELECT * FROM make ";
         List<Vechicle> vechiclesList = new ArrayList<>();
         Connection connection = CONNECTION_POOL.retrieve();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -68,8 +67,16 @@ public class VechicleDao implements Dao<Vechicle> {
     @Override
     public Vechicle initialize(Vechicle vechicle, ResultSet resultSet) {
         try {
-            vechicle.setId(resultSet.getLong("make_id"));
-            vechicle.setMake(resultSet.getString("make_name"));
+            vechicle.setId(resultSet.getLong("vechicle_id"));
+            vechicle.setMake(resultSet.getString("make"));
+            vechicle.setModel(resultSet.getString("model"));
+            vechicle.setCountry(resultSet.getString("country"));
+            vechicle.setBody(resultSet.getString("body"));
+            vechicle.setColor(resultSet.getString("color"));
+            vechicle.setEngine(resultSet.getString("engine"));
+            vechicle.setTransmission(resultSet.getString("transmission"));
+            vechicle.setMileage(Integer.parseInt(resultSet.getString("mileage")));
+            vechicle.setWheelDrive(resultSet.getString("wheel_drive"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,13 +1,18 @@
 package kz.epam.davletalin.entity;
 
+import java.io.File;
+import java.util.List;
+
 public class Vechicle {
     private long id;
     private String make;
     private String model;
-    private String color;
+    private String country;
     private String body;
+    private String color;
     private String engine;
     private String transmission;
+    private int mileage;
     private String wheelDrive;
 
 
@@ -79,11 +84,36 @@ public class Vechicle {
         this.wheelDrive = wheelDrive;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+
     @Override
     public String toString() {
         return "Vechicle{" +
                 "id=" + id +
                 ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", country='" + country + '\'' +
+                ", body='" + body + '\'' +
+                ", color='" + color + '\'' +
+                ", engine='" + engine + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", mileage=" + mileage +
+                ", wheelDrive='" + wheelDrive + '\'' +
                 '}';
     }
 }

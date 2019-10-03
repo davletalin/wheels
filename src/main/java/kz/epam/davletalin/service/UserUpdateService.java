@@ -16,12 +16,13 @@ public class UserUpdateService implements Service {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
         ServletContext servletContext = req.getServletContext();
-        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/user-update.jsp");
+        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/profile.jsp");
         dispatcher.forward(req, res);
     }
 
-    @Override
+    @Override//TODO finish method
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+        String referer=req.getHeader("referer");
         HttpSession session=req.getSession();
         UserDao userDao=new UserDao();
         User updatingUser = (User) session.getAttribute("user");
@@ -31,6 +32,9 @@ public class UserUpdateService implements Service {
         String lastName=req.getParameter("password");
         if (password!=null){
             updatingUser.setPassword(password);
+        }
+        if(email!=null){
+            updatingUser.setEmail(email);
         }
 
 

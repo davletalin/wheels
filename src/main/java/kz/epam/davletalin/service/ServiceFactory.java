@@ -1,5 +1,6 @@
 package kz.epam.davletalin.service;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class ServiceFactory {
         SERVICE_MAP.put("/delete", new UserDeleteService());
         SERVICE_MAP.put("/profile", new UserUpdateService());
         SERVICE_MAP.put("/switch", new LanguageSwitchService());
+        SERVICE_MAP.put("/post", new AdPostService());
     }
 
     public static ServiceFactory getInstance() {

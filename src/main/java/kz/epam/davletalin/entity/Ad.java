@@ -9,6 +9,9 @@ public class Ad {
     private User user;
     private Timestamp publication_date;
     private Vechicle vechicle;
+    private String city;
+    private Long price;
+    private String description;
     private List<File> photos;
 
     public Ad() {
@@ -52,5 +55,29 @@ public class Ad {
 
     public void setPhotos(List<File> photos) {
         this.photos = photos;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

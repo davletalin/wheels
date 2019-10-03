@@ -16,8 +16,7 @@ public class LogInService implements Service {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("jsp/login.jsp");
-        dispatcher.forward(req, res);
+
     }
 
     @Override
@@ -27,16 +26,15 @@ public class LogInService implements Service {
         final String password = req.getParameter("password");
         System.out.println("login = " + login);
         System.out.println("password = " + password);
-        ServletContext servletContext = req.getServletContext();
         if (checkUserByLoginAndPassword(login, password)) {
             System.out.println("login password matches");
             User user = new UserDao().getByLogin(login);
             session.setAttribute("user", user);
             res.sendRedirect(req.getContextPath());
         } else {
+            final String referer = req.getHeader("referer");
             System.out.println("login password incorrect");
-            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/jsp/login.jsp");
-            dispatcher.forward(req, res);
+            res.sendRedirect(referer);
         }
 
     }

@@ -17,6 +17,7 @@
 
 .user-menu {
     text-align: right;
+    padding-right: inherit;
 }
 
 .login-form {

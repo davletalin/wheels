@@ -27,7 +27,8 @@ public class RegistrationService implements Service {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
         String newLogin = req.getParameter("login");
         System.out.println("newLogin= " + newLogin);
-        if (new UserDao().getByLogin(newLogin).getLogin() == null) {
+        UserDao userDao=new UserDao();
+        if (userDao.getByLogin(newLogin).getLogin() == null) {
             System.out.println("user login == null");
             User user = new User();
             user.setLogin(newLogin);
@@ -37,7 +38,7 @@ public class RegistrationService implements Service {
             user.setEmail(req.getParameter("email"));
             user.setRole(Role.USER);
             user.setRegDate(new Timestamp(new Date().getTime()));
-            new UserDao().save(user);
+            userDao.save(user);
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             req.removeAttribute("error");

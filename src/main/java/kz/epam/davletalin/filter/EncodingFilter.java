@@ -1,15 +1,14 @@
 package kz.epam.davletalin.filter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpFilter;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class EncodingFilter extends HttpFilter {
+public class EncodingFilter implements Filter {
     private static String encoding;
+//    private final String[] extensions = {".ico", ".gif", ".css", ".js", ".ttf", ".woff", ".woff2", ".svg", ".eot",".jpg", ".png"};
+
 
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -17,8 +16,10 @@ public class EncodingFilter extends HttpFilter {
         if (encoding == null) encoding = "UTF-8";
     }
 
-    @Override
-    protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+//        if (isExtensions(req)) {
+//            chain.doFilter(req, res);
+//        }
         if (null == req.getCharacterEncoding()) {
             req.setCharacterEncoding(encoding);
         }
@@ -26,4 +27,14 @@ public class EncodingFilter extends HttpFilter {
         res.setCharacterEncoding("UTF-8");
         chain.doFilter(req,res);
     }
+//    private boolean isExtensions(ServletRequest request) {
+//        String context = request.get();
+//        String path = request.getRequestURI().substring(context.length());
+//        for (String item : extensions) {
+//            if (path.endsWith(item)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

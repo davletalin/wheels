@@ -4,6 +4,7 @@ import kz.epam.davletalin.entity.User;
 import kz.epam.davletalin.service.Service;
 import kz.epam.davletalin.service.ServiceFactory;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
