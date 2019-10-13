@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -54,12 +54,19 @@ public class AdPostService implements Service {
             final String description = req.getParameter("description");
             List<Part> fileParts = req.getParts().stream().filter(part -> "images".equals(part.getName())).collect(Collectors.toList()); // Retrieves <input type="file" name="images" multiple>
             List<File> images=new ArrayList<>();
+            File imagesPath=new File("D:\\temp");//TODO fix path with constant
+            if (!imagesPath.exists()){
+                imagesPath.mkdir();
+            }
             for (Part part :fileParts) {
                 InputStream is=part.getInputStream();
                 byte[] fileContent=is.readAllBytes();
-                for (int i = 0; i <fileContent.length ; i++) {
-                    System.out.print(fileContent[i]);
+                System.out.println("fileLentgth=" +fileContent.length);
+                try (FileOutputStream fos = new FileOutputStream(imagesPath+"\\photo.jpg")) {
+                    fos.write(fileContent);
                 }
+                images.add(imagesPath);
+                is.close();
             }
 
             Vechicle vechicle=new Vechicle();
@@ -68,6 +75,7 @@ public class AdPostService implements Service {
             vechicle.setCountry(country);
             vechicle.setBody(body);
             vechicle.setColor(color);
+            vechicle.setEngine(engine);
             vechicle.setTransmission(transmission);
             vechicle.setMileage(Integer.parseInt(mileage));
             vechicle.setWheelDrive(wheelDrive);
@@ -78,28 +86,13 @@ public class AdPostService implements Service {
             ad.setCity(city);
             ad.setPrice(Long.valueOf(price));
             ad.setDescription(description);
-
-
-
-            for (Part filePart : fileParts) {
-                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-                System.out.println("fileName = " + fileName);
-                System.out.println("filePart = " + filePart);
-            }
-
-            Part part = req.getPart("image1");
-            System.out.println(" first image size = " + part.getSize());
-            System.out.println(" first image SubmittedFileName = " + part.getSubmittedFileName());
-            System.out.println(" first image getContentType = " + part.getContentType());
-
-            System.out.println(" first image name = " + part.getName());
-            System.out.println(" first image inputstream = " + part.getInputStream());
+            ad.setPhotos(images);
             ServletContext context = req.getServletContext();
             RequestDispatcher dispatcher = context.getRequestDispatcher("/jsp/main.jsp");
             dispatcher.forward(req, res);
 //            }
 
         } else
-            System.out.println("user=null");
+            res.sendRedirect(req.getContextPath());
     }
 }

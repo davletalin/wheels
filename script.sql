@@ -19,7 +19,7 @@ CREATE SCHEMA IF NOT EXISTS `wheels` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8m
 USE `wheels` ;
 
 -- -----------------------------------------------------
--- Table `wheels`.`ad`
+-- CatalogRetriever `wheels`.`ad`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wheels`.`ad` (
   `ad_id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -41,7 +41,7 @@ CREATE UNIQUE INDEX `ad_id_UNIQUE` ON `wheels`.`ad` (`ad_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
--- Table `wheels`.`body`
+-- CatalogRetriever `wheels`.`body`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wheels`.`body` (
   `body_id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ CREATE UNIQUE INDEX `body_name_en_UNIQUE` ON `wheels`.`body` (`body_name_en` ASC
 
 
 -- -----------------------------------------------------
--- Table `wheels`.`color`
+-- CatalogRetriever `wheels`.`color`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wheels`.`color` (
   `color_id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -73,7 +73,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `wheels`.`make`
+-- CatalogRetriever `wheels`.`make`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wheels`.`make` (
   `make_id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -90,7 +90,7 @@ CREATE UNIQUE INDEX `make_name_UNIQUE` ON `wheels`.`make` (`make_name` ASC) VISI
 
 
 -- -----------------------------------------------------
--- Table `wheels`.`model`
+-- CatalogRetriever `wheels`.`model`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wheels`.`model` (
   `model_id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -109,7 +109,7 @@ CREATE INDEX `make_idx` ON `wheels`.`model` (`make_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
--- Table `wheels`.`user`
+-- CatalogRetriever `wheels`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `wheels`.`user` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT,

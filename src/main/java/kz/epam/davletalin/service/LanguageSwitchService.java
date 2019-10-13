@@ -25,7 +25,7 @@ public class LanguageSwitchService implements Service {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) {
 
     }
 }

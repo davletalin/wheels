@@ -9,12 +9,13 @@
     <title><fmt:message bundle="${lang}" key="locale.adpost"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
     <style>
-        .ad-form{
-           padding-top: 20px;
+        .ad-form {
+            padding-top: 20px;
         }
 
 
     </style>
+
 </head>
 <body>
 <header class="header">
@@ -22,19 +23,31 @@
 </header>
 <main>
     <form method="post" action="${pageContext.request.contextPath}/post" class="ad-form" enctype="multipart/form-data">
-        <input type="text" name="make" placeholder="make" value=""><br>
-        <input type="text" name="model" placeholder="model" value=""><br>
-        <input type="text" name="country" placeholder="country" value=""><br>
-        <input type="text" name="body" placeholder="body" value=""><br>
-        <input type="text" name="color" placeholder="color" value=""><br>
-        <input type="text" name="engine" placeholder="engine" value=""><br>
-        <input type="text" name="transmission" placeholder="transmission" value=""><br>
-        <input type="text" name="mileage" placeholder="mileage" value=""><br>
-        <input type="text" name="wheel_drive" placeholder="wheel drive" value=""><br>
-        <input type="text" name="price" placeholder="price" value=""><br>
-        <input type="text" name="city" placeholder="city" value=""><br>
-        <input type="text" name="description" placeholder="description" value=""><br>
-        <input type="file" name="images" placeholder="image" multiple accept="image/*, image/jpeg, image/png"><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.make"/></div>
+        <select type="text" name="make" value=""></select><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.model"/></div>
+        <input type="text" name="model" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.country"/></div>
+        <input type="text" name="country" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.body"/></div>
+        <input type="text" name="body" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.color"/></div>
+        <input type="text" name="color" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.engine"/></div>
+        <input type="text" name="engine" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.tranmission"/></div>
+        <input type="text" name="transmission" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.country"/></div>
+        <input type="text" name="mileage" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.wheel"/></div>
+        <input type="text" name="wheel_drive" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.price"/></div>
+        <input type="text" name="price" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.city"/></div>
+        <input type="text" name="city" value=""><br>
+        <div class="auth-form-label"><fmt:message bundle="${lang}" key="locale.description"/></div>
+        <input type="text" name="description" value=""><br>
+        <input type="file" name="images" multiple accept="image/*, image/jpeg, image/png" value="<fmt:message bundle="${lang}" key="locale.wheel"/>"><br>
         <input type="submit" name="Post"><br>
     </form>
 </main>

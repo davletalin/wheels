@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements Dao<User> {
@@ -37,7 +38,22 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> getAll() {
-        return null;
+        final String sql = "SELECT * FROM user;";
+        User user=new User();
+        List<User> users=new ArrayList<>();
+        Connection connection = CONNECTION_POOL.retrieve();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user = initialize(user, resultSet);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CONNECTION_POOL.putBack(connection);
+        }
+        return users;
     }
 
     @Override
@@ -63,7 +79,25 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User user, String[] params) {
-        final String sql = "UPDATE user SET password = ?, first_name = ?, last_name = ?, email = ?, phone = ?, role_id = ?";
+
+    }
+
+    public void update(User user) {
+        final String sql = "UPDATE user SET password = ?, first_name = ?, last_name = ?, email = ?, phone = ? WHERE login=?";
+        Connection connection = CONNECTION_POOL.retrieve();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setLong(5, user.getPhone());
+            preparedStatement.setString(6, user.getLogin());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CONNECTION_POOL.putBack(connection);
+        }
     }
 
     @Override

@@ -42,7 +42,6 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-
 <div class="main-cont">
     <h1></h1>
     <div class="adforms">
@@ -58,6 +57,8 @@
 
 
     </div>
+    <a href="${pageContext.request.contextPath}/test"> Test</a>
+    <a href="${pageContext.request.contextPath}/allusers"> all users</a>
 
 
     <%--    <p><a href="${pageContext.request.contextPath}/vechicle">List of vechicles</a></p>--%>

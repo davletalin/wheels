@@ -24,10 +24,9 @@
 
     <div class="user-menu">
 <%--        <img class="koleso" src="${pageContext.request.contextPath}/img/wheel.png" >--%>
+    <a href="${pageContext.request.contextPath}/switch?language=ru" class="language-cont">ru</a>
+    <a href="${pageContext.request.contextPath}/switch?language=en" class="language-cont">en</a>
         <c:if test="${user==null}">
-            <a href="${pageContext.request.contextPath}/switch?language=ru" class="language-cont">ru</a>
-            <a href="${pageContext.request.contextPath}/switch?language=en" class="language-cont">en</a>
-
             <%--            <p><a href="${pageContext.request.contextPath}/login">Войти</a></p>--%>
             <%--            <p><a href="${pageContext.request.contextPath}/registration">Регистрация</a></p>--%>
 
