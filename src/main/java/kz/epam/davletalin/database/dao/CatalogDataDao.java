@@ -22,15 +22,16 @@ public class CatalogDataDao implements Dao<CatalogRetriever> {
     public List<CatalogRetriever> getAll() throws SQLException {
         return null;
     }
-    public List<CatalogRetriever> getAll(String tableName){
-        final String sql="SELECT * FROM "+tableName+";";
-        List<CatalogRetriever> catalogRetrievers =new ArrayList<>();
-        CatalogRetriever catalogRetriever =new CatalogRetriever();
+
+    public List<CatalogRetriever> getAll(String tableName) {
+        final String sql = "SELECT * FROM " + tableName + ";";
+        List<CatalogRetriever> catalogRetrievers = new ArrayList<>();
         Connection connection = CONNECTION_POOL.retrieve();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                catalogRetriever = initialize(catalogRetriever, resultSet);
+                CatalogRetriever catalogRetriever = new CatalogRetriever();
+                catalogRetriever = initialize(catalogRetriever, resultSet, "ru");
                 catalogRetrievers.add(catalogRetriever);
             }
         } catch (SQLException e) {
@@ -60,15 +61,10 @@ public class CatalogDataDao implements Dao<CatalogRetriever> {
     public CatalogRetriever initialize(CatalogRetriever catalogRetriever, ResultSet resultSet) throws SQLException {
         return null;
     }
+
     public CatalogRetriever initialize(CatalogRetriever catalogRetriever, ResultSet resultSet, String locale) throws SQLException {
         catalogRetriever.setId(resultSet.getLong("id"));
-        if (locale.equals("ru")) {
-            catalogRetriever.setName(resultSet.getString("name"));
-            System.out.println(resultSet.getString("name"));//TODO delete log
-        } else {
-            catalogRetriever.setName(resultSet.getString("name"));
-            System.out.println("else");//TODO delete log
-        }
-        return null;
+        catalogRetriever.setName(resultSet.getString("name_en"));
+        return catalogRetriever;
     }
 }

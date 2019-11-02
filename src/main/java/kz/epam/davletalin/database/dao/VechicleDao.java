@@ -16,7 +16,7 @@ public class VechicleDao implements Dao<Vechicle> {
     @Override
     public Vechicle getById(long id) throws SQLException {
         Connection connection = CONNECTION_POOL.retrieve();
-        final String sql = "SELECT * FROM make WHERE make_id= ?";
+        final String sql = "SELECT * FROM make WHERE id= ?";
         Vechicle vechicle = null;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
@@ -50,7 +50,18 @@ public class VechicleDao implements Dao<Vechicle> {
     }
 
     @Override
-    public void save(Vechicle vechicle) {
+    public void save(Vechicle vechicle) throws SQLException {
+        final String sql = "INSERT INTO vechicle (make, model, country, body, color, engine, " +
+                "transmission, mileage, wheel_drive) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        Connection connection = CONNECTION_POOL.retrieve();
+        try(PreparedStatement preparedStatement=connection.prepareStatement(sql)){
+            preparedStatement.setInt();
+        }catch (SQLException e){
+            e.printStackTrace();//log
+            connection.rollback();//?
+        }finally {
+            CONNECTION_POOL.putBack(connection);
+        }
 
     }
 

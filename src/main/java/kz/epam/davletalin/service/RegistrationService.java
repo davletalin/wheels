@@ -4,8 +4,6 @@ import kz.epam.davletalin.database.dao.UserDao;
 import kz.epam.davletalin.entity.Role;
 import kz.epam.davletalin.entity.User;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +36,7 @@ public class RegistrationService implements Service {
             user.setEmail(req.getParameter("email"));
             user.setRole(Role.USER);
             user.setRegDate(new Timestamp(new Date().getTime()));
+            user.setPhone(Long.parseLong(req.getParameter("phone")));
             userDao.save(user);
             HttpSession session = req.getSession();
             session.setAttribute("user", user);

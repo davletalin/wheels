@@ -8,7 +8,7 @@
 <head>
     <%--    <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon.ico" type="image/x-icon">--%>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
-    <title>Main jsp</title>
+    <title>Wheels</title>
     <style>
         .adforms {
             background: white;
@@ -59,6 +59,7 @@
     </div>
     <a href="${pageContext.request.contextPath}/test"> Test</a>
     <a href="${pageContext.request.contextPath}/allusers"> all users</a>
+    <p><a href="${pageContext.request.contextPath}/jsp/XHRtest.jsp">Test XHR</a></p>
 
 
     <%--    <p><a href="${pageContext.request.contextPath}/vechicle">List of vechicles</a></p>--%>

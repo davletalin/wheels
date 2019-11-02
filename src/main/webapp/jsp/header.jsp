@@ -10,8 +10,8 @@
         .koleso{
             height: 100px;
             width: 100px;
-            text-align: left;
-           opacity: 50%;
+           float: left;
+
         }
         .ad-post-button{
 
@@ -23,7 +23,7 @@
 <div class="header">
 
     <div class="user-menu">
-<%--        <img class="koleso" src="${pageContext.request.contextPath}/img/wheel.png" >--%>
+       <a href="${pageContext.request.contextPath}/jsp/main.jsp"> <img class="koleso" src="${pageContext.request.contextPath}/img/wheel.png" ></a>
     <a href="${pageContext.request.contextPath}/switch?language=ru" class="language-cont">ru</a>
     <a href="${pageContext.request.contextPath}/switch?language=en" class="language-cont">en</a>
         <c:if test="${user==null}">

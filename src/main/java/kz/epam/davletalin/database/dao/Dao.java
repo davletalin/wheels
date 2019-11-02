@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface Dao<T> {
     T getById(long id) throws SQLException;
     List<T> getAll() throws SQLException;
-    void save(T t);
+    void save(T t) throws SQLException;
     void update(T t, String[]params);
     void delete(T t);
     T initialize(T t, ResultSet resultSet) throws SQLException;

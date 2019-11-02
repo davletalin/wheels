@@ -12,7 +12,7 @@
 <body>
 <p>For test</p>
 <form action="{pageContext.request.contextPath}/test" method="post">
-    <select name="selctedOne">
+    <select name="selectedOne">
         <option> --<fmt:message bundle="${lang}" key="locale.make"/>--</option>
         <c:out value="${makes}"/>
         <c:forEach items="${makes}" var="make">
@@ -23,5 +23,7 @@
 <c:forEach items="${users}" var="user">
     <c:out value="${user}"/>
 </c:forEach>
+
+
 </body>
 </html>
